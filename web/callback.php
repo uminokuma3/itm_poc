@@ -18,7 +18,7 @@ if($type != "text"){
 }
 
 //返信データ作成
-if ($text == 'いいえ') {
+if ($text == '一覧') {
   $response_format_text = [
     "type" => "template",
     "altText" => "機能一覧",
@@ -130,7 +130,7 @@ if ($text == 'いいえ') {
             [
               "type" => "message",
               "label" => "いいえ",
-              "text" => "いいえ"
+              "text" => "一覧"
             ]
         ]
     ]
