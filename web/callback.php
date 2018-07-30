@@ -18,41 +18,39 @@ if($type != "text"){
 }
 
 //返信データ作成
-if ($text == 'はい') {
+if ($text == 'いいえ') {
   $response_format_text = [
     "type" => "template",
-    "altText" => "こちらの〇〇はいかがですか？",
+    "altText" => "機能一覧",
     "template" => [
       "type" => "buttons",
       "thumbnailImageUrl" => "https://" . $_SERVER['SERVER_NAME'] . "/img1.jpg",
-      "title" => "○○レストラン",
-      "text" => "お探しのレストランはこれですね",
+      "title" => "機能一覧",
+      "text" => "ご希望の機能をお選びください",
       "actions" => [
           [
             "type" => "postback",
-            "label" => "予約する",
+            "label" => "QAを検索する",
             "data" => "action=buy&itemid=123"
           ],
           [
             "type" => "postback",
-            "label" => "電話する",
+            "label" => "連絡先を調べる",
             "data" => "action=pcall&itemid=123"
           ],
           [
             "type" => "uri",
-            "label" => "詳しく見る",
+            "label" => "サーバステータスを見る",
             "uri" => "https://" . $_SERVER['SERVER_NAME'] . "/"
           ],
           [
             "type" => "message",
-            "label" => "違うやつ",
-            "text" => "違うやつお願い"
+            "label" => "その他",
+            "text" => "その他をお願い"
           ]
       ]
     ]
   ];
-} else if ($text == 'いいえ') {
-  exit;
 } else if ($text == '違うやつお願い') {
   $response_format_text = [
     "type" => "template",
@@ -62,18 +60,13 @@ if ($text == 'はい') {
       "columns" => [
           [
             "thumbnailImageUrl" => "https://" . $_SERVER['SERVER_NAME'] . "/img2-1.jpg",
-            "title" => "●●レストラン",
+            "title" => "ダミー機能１",
             "text" => "こちらにしますか？",
             "actions" => [
               [
                   "type" => "postback",
-                  "label" => "予約する",
+                  "label" => "検索する",
                   "data" => "action=rsv&itemid=111"
-              ],
-              [
-                  "type" => "postback",
-                  "label" => "電話する",
-                  "data" => "action=pcall&itemid=111"
               ],
               [
                   "type" => "uri",
@@ -84,18 +77,13 @@ if ($text == 'はい') {
           ],
           [
             "thumbnailImageUrl" => "https://" . $_SERVER['SERVER_NAME'] . "/img2-2.jpg",
-            "title" => "▲▲レストラン",
+            "title" => "ダミー機能２",
             "text" => "それともこちら？（２つ目）",
             "actions" => [
               [
                   "type" => "postback",
-                  "label" => "予約する",
+                  "label" => "検索する",
                   "data" => "action=rsv&itemid=222"
-              ],
-              [
-                  "type" => "postback",
-                  "label" => "電話する",
-                  "data" => "action=pcall&itemid=222"
               ],
               [
                   "type" => "uri",
@@ -106,18 +94,13 @@ if ($text == 'はい') {
           ],
           [
             "thumbnailImageUrl" => "https://" . $_SERVER['SERVER_NAME'] . "/img2-3.jpg",
-            "title" => "■■レストラン",
+            "title" => "ダミー機能３",
             "text" => "はたまたこちら？（３つ目）",
             "actions" => [
               [
                   "type" => "postback",
-                  "label" => "予約する",
+                  "label" => "検索する",
                   "data" => "action=rsv&itemid=333"
-              ],
-              [
-                  "type" => "postback",
-                  "label" => "電話する",
-                  "data" => "action=pcall&itemid=333"
               ],
               [
                   "type" => "uri",
@@ -129,13 +112,15 @@ if ($text == 'はい') {
       ]
     ]
   ];
+} else if ($text == 'はい') {
+  exit;
 } else {
   $response_format_text = [
     "type" => "template",
     "altText" => "こんにちは 何かご用ですか？（はい／いいえ）",
     "template" => [
         "type" => "confirm",
-        "text" => "こんにちは 何かご用ですか？",
+        "text" => $text + "は" . $text . "ですね。解決しましたか？",
         "actions" => [
             [
               "type" => "message",
@@ -151,6 +136,7 @@ if ($text == 'はい') {
     ]
   ];
 }
+
 
 $post_data = [
 	"replyToken" => $replyToken,
