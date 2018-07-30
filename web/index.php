@@ -6,6 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-LINE Messaging APIのPoC用サイトです。正常に起動しています。
+PoC用LINE Messaging APIです。正常に起動しています。
 </body>
 </html>
