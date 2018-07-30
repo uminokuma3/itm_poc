@@ -120,7 +120,7 @@ if ($text == 'いいえ') {
     "altText" => "こんにちは 何かご用ですか？（はい／いいえ）",
     "template" => [
         "type" => "confirm",
-        "text" => $text . "は" . $text . "ですね。解決しましたか？",
+        "text" => "「" . $text . "」について検索します。・・・「" . $text . "」でした。解決しましたか？",
         "actions" => [
             [
               "type" => "message",
