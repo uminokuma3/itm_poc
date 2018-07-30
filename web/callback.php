@@ -14,7 +14,7 @@ if($type != "text"){
 }
 
 //返信データ作成
-if ($text == '_一覧') {
+if ($text == '一覧') {
   $response_format_text = [
     "type" => "template",
     "altText" => "機能一覧",
@@ -110,11 +110,34 @@ if ($text == '_一覧') {
   ];
 } else if ($text == '_不要') {
   exit;
+
+//QA一覧ここから
+} else if ($text == '営業の連絡先') {
+  $response_format_text = [
+    "type" => "text",
+    "text" => "営業の連絡先は46-9342です。",
+  ];
 } else if ($text == '営業') {
   $response_format_text = [
     "type" => "text",
     "text" => "営業の連絡先は46-9342です。",
   ];
+} else if ($text == '目黒の連絡先') {
+  $response_format_text = [
+    "type" => "text",
+    "text" => "目黒ITM席の連絡先は外線8424です。",
+  ];
+} else if ($text == '目黒') {
+  $response_format_text = [
+    "type" => "text",
+    "text" => "目黒ITM席の連絡先は外線8424です。",
+  ];
+} else if ($text == 'ソフィア') {
+  $response_format_text = [
+    "type" => "text",
+    "text" => "ソフィアの連絡先は03-xxxx-xxxxです。",
+  ];
+//QA一覧ここまで
 } else {
   $response_format_text = [
     "type" => "template",
@@ -126,7 +149,7 @@ if ($text == '_一覧') {
             [
               "type" => "message",
               "label" => "はい",
-              "text" => "_一覧"
+              "text" => "一覧"
             ],
             [
               "type" => "message",
