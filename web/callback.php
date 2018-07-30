@@ -1,24 +1,20 @@
 <?php
 $accessToken = getenv('LINE_CHANNEL_ACCESS_TOKEN');
-
-
 //ユーザーからのメッセージ取得
 $json_string = file_get_contents('php://input');
 $jsonObj = json_decode($json_string);
-
 $type = $jsonObj->{"events"}[0]->{"message"}->{"type"};
 //メッセージ取得
 $text = $jsonObj->{"events"}[0]->{"message"}->{"text"};
 //ReplyToken取得
 $replyToken = $jsonObj->{"events"}[0]->{"replyToken"};
-
 //メッセージ以外のときは何も返さず終了
 if($type != "text"){
 	exit;
 }
 
 //返信データ作成
-if ($text == '一覧') {
+if ($text == '_一覧') {
   $response_format_text = [
     "type" => "template",
     "altText" => "機能一覧",
@@ -46,12 +42,12 @@ if ($text == '一覧') {
           [
             "type" => "message",
             "label" => "その他",
-            "text" => "その他をお願い"
+            "text" => "_その他"
           ]
       ]
     ]
   ];
-} else if ($text == 'その他をお願い') {
+} else if ($text == '_その他') {
   $response_format_text = [
     "type" => "template",
     "altText" => "候補を３つご案内しています。",
@@ -112,37 +108,39 @@ if ($text == '一覧') {
       ]
     ]
   ];
-} else if ($text == 'はい') {
+} else if ($text == '_不要') {
   exit;
+} else if ($text == '営業') {
+  $response_format_text = [
+    "type" => "text",
+    "text" => "営業の連絡先は46-9342です。",
+  ];
 } else {
   $response_format_text = [
     "type" => "template",
     "altText" => "こんにちは 何かご用ですか？（はい／いいえ）",
     "template" => [
         "type" => "confirm",
-        "text" => "「" . $text . "」について検索します。・・・「" . $text . "」でした。解決しましたか？",
+        "text" => "「" . $text . "」について検索しましたが回答が見つかりませんでした。一覧から選択しますか？",
         "actions" => [
             [
               "type" => "message",
               "label" => "はい",
-              "text" => "はい"
+              "text" => "_一覧"
             ],
             [
               "type" => "message",
               "label" => "いいえ",
-              "text" => "一覧"
+              "text" => "_不要"
             ]
         ]
     ]
   ];
 }
-
-
 $post_data = [
 	"replyToken" => $replyToken,
 	"messages" => [$response_format_text]
 	];
-
 $ch = curl_init("https://api.line.me/v2/bot/message/reply");
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
