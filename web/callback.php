@@ -152,6 +152,11 @@ if ($text == '一覧') {
     "type" => "text",
     "text" => "おはようございます！",
   ];
+} else if ($text == 'りそな') {
+  $response_format_text = [
+    "type" => "text",
+    "text" => "りそなの本社は大阪府大阪市中央区備後町二丁目2番1号です。",
+  ];
 //QA一覧ここまで
 } else {
   $response_format_text = [
