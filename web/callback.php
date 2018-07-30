@@ -137,6 +137,21 @@ if ($text == '一覧') {
     "type" => "text",
     "text" => "ソフィアの連絡先は03-xxxx-xxxxです。",
   ];
+} else if ($text == 'こんにちは') {
+  $response_format_text = [
+    "type" => "text",
+    "text" => "こんにちは！",
+  ];
+} else if ($text == 'さようなら') {
+  $response_format_text = [
+    "type" => "text",
+    "text" => "さようなら！",
+  ];
+} else if ($text == 'おはよう') {
+  $response_format_text = [
+    "type" => "text",
+    "text" => "おはようございます！",
+  ];
 //QA一覧ここまで
 } else {
   $response_format_text = [
