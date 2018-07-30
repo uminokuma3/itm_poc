@@ -51,7 +51,7 @@ if ($text == 'いいえ') {
       ]
     ]
   ];
-} else if ($text == '違うやつお願い') {
+} else if ($text == 'その他をお願い') {
   $response_format_text = [
     "type" => "template",
     "altText" => "候補を３つご案内しています。",
